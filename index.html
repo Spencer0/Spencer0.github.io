@@ -7,7 +7,6 @@ p    {color: red;}
 </style>
 <title>This is title</title>
 <script>
-
 var GlobalRandom = 0;
 function Person(first, last, age, eyecolor) {
     this.firstName = first;
@@ -28,21 +27,24 @@ function imageFound() {
 }
 function imageNotFound() {
     TryGif();
-    DisplayPicture();
 }
-
+function gifNotFound(){
+  DisplayPicture()
+}
 function TryGif()
 {
     var randomString = GlobalRandom.toString();  
     var randomHeaderImage = 'http://s.4cdn.org/image/title/'+randomString+'.gif';
     var GifTest = new Image();
-    GifTest.src = randomHeaderImage;
-    document.body.appendChild(GifTest);
-}
+    GifTest.onload = imageFound;
+    GifTest.onerror = gifNotFound;
 
+    GifTest.src = randomHeaderImage;
+    
+}
 function RandomChanHeader()
 {
-  GlobalRandom = Math.floor((Math.random() * 200));
+  GlobalRandom = Math.floor((Math.random() * 500));
   var randomString = GlobalRandom.toString();  
   var randomHeaderImage = 'http://s.4cdn.org/image/title/'+randomString+'.png';
   testImage(randomHeaderImage);
@@ -80,4 +82,3 @@ Hello world
 
 </div>
 </body>
-</html>
