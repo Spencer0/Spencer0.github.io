@@ -14,21 +14,40 @@ function Person(first, last, age, eyecolor) {
     this.age = age;
     this.eyeColor = eyecolor;
 }
+function testImage(URL) {
 
+    var tester=new Image();
+    tester.onload=imageFound;
+    tester.onerror=imageNotFound;
+    tester.src=URL;
+}
+
+function imageFound() {
+    //alert('That image is found and loaded');
+    document.body.appendChild(this);
+    
+}
+
+function imageNotFound() {
+    //alert('That image was not found.');
+    
+}
 function RandomChanHeader()
 {
-	var randomString = Math.floor((Math.random() * 200)+1).toString();  
+	var randomString = Math.floor((Math.random() * 200)).toString();  
 	var randomHeaderImage = 'http://s.4cdn.org/image/title/'+randomString+'.png';
+	testImage(randomHeaderImage);
+
 	return randomHeaderImage;
 	
 }
 function DisplayPicture()
 {
-	var myImage = new Image(300,100)
-	myImage.src = RandomChanHeader();
-	document.body.appendChild(myImage);
-}
+	 RandomChanHeader();
+	
 
+
+}
 
 function QuickWrite()
 {
