@@ -14,6 +14,7 @@ function Person(first, last, age, eyecolor) {
     this.age = age;
     this.eyeColor = eyecolor;
 }
+
 function testImage(URL) {
 
     var tester=new Image();
@@ -23,14 +24,14 @@ function testImage(URL) {
 }
 
 function imageFound() {
-    //alert('That image is found and loaded');
-    document.body.appendChild(this);
+    
+   document.body.appendChild(this);
     
 }
 
 function imageNotFound() {
-    //alert('That image was not found.');
     
+    DisplayPicture();
 }
 function RandomChanHeader()
 {
