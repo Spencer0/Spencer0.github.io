@@ -1,6 +1,6 @@
 <html>
 <header>
-	<style>
+  <style>
 body {background-color: powderblue;}
 h1   {color: blue;}
 p    {color: red;}
@@ -8,61 +8,63 @@ p    {color: red;}
 <title>This is title</title>
 <script>
 
+var GlobalRandom = 0;
 function Person(first, last, age, eyecolor) {
     this.firstName = first;
     this.lastName = last;
     this.age = age;
     this.eyeColor = eyecolor;
 }
-
 function testImage(URL) {
-
     var tester=new Image();
     tester.onload=imageFound;
     tester.onerror=imageNotFound;
     tester.src=URL;
 }
-
 function imageFound() {
     
    document.body.appendChild(this);
     
 }
-
 function imageNotFound() {
-    
+    TryGif();
     DisplayPicture();
 }
+
+function TryGif()
+{
+    var randomString = GlobalRandom.toString();  
+    var randomHeaderImage = 'http://s.4cdn.org/image/title/'+randomString+'.gif';
+    var GifTest = new Image();
+    GifTest.src = randomHeaderImage;
+    document.body.appendChild(GifTest);
+}
+
 function RandomChanHeader()
 {
-	var randomString = Math.floor((Math.random() * 200)).toString();  
-	var randomHeaderImage = 'http://s.4cdn.org/image/title/'+randomString+'.png';
-	testImage(randomHeaderImage);
-
-	return randomHeaderImage;
-	
+  GlobalRandom = Math.floor((Math.random() * 200));
+  var randomString = GlobalRandom.toString();  
+  var randomHeaderImage = 'http://s.4cdn.org/image/title/'+randomString+'.png';
+  testImage(randomHeaderImage);
+  return randomHeaderImage;
+  
 }
 function DisplayPicture()
 {
-	 RandomChanHeader();
-	
-
-
+   RandomChanHeader();
+  
 }
-
 function QuickWrite()
 {
-	for (var i = 0; i < 10; i++) 
-	{
-		let div = document.createElement('div');
-  		div.className = "alert alert-success";
-  		div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
-
-  		document.body.appendChild(div);
-	}
-	
+  for (var i = 0; i < 10; i++) 
+  {
+    let div = document.createElement('div');
+      div.className = "alert alert-success";
+      div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
+      document.body.appendChild(div);
+  }
+  
 }
-
 </script>
 </header>
 <body>
