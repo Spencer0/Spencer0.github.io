@@ -1,0 +1,89 @@
+<html>
+<header>
+  <link rel="stylesheet" type="text/css" href="http://s.4cdn.org/css/yotsubluenew.679.css">
+  <link rel="shortcut icon" type="image/x-icon" href="http://regishouse.org/images/ico/favicon.ico">
+
+
+<title>Spencers Site@!</title>
+<script>
+var GlobalRandom = 0;
+function Person(first, last, age, eyecolor) {
+    this.firstName = first;
+    this.lastName = last;
+    this.age = age;
+    this.eyeColor = eyecolor;
+}
+function testImage(URL) {
+    var tester=new Image();
+    tester.onload=imageFound;
+    tester.onerror=imageNotFound;
+    tester.src=URL;
+}
+function imageFound() {
+    
+   document.body.appendChild(this);
+    
+}
+function imageNotFound() {
+    TryGif();
+}
+function gifNotFound(){
+  DisplayPicture()
+}
+function TryGif()
+{
+    var randomString = GlobalRandom.toString();  
+    var randomHeaderImage = 'http://s.4cdn.org/image/title/'+randomString+'.gif';
+    var GifTest = new Image();
+    GifTest.onload = imageFound;
+    GifTest.onerror = gifNotFound;
+
+    GifTest.src = randomHeaderImage;
+    
+}
+function RandomChanHeader()
+{
+  GlobalRandom = Math.floor((Math.random() * 500));
+  var randomString = GlobalRandom.toString();  
+  var randomHeaderImage = 'http://s.4cdn.org/image/title/'+randomString+'.png';
+  testImage(randomHeaderImage);
+  return randomHeaderImage;
+  
+}
+function DisplayPicture()
+{
+   RandomChanHeader();
+  
+}
+function QuickWrite()
+{
+  for (var i = 0; i < 10; i++) 
+  {
+    let div = document.createElement('div');
+      div.className = "alert alert-success";
+      div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
+      document.body.appendChild(div);
+  }
+  
+}
+
+</script>
+</header>
+<body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id = 1 >
+
+<div style = "text-align: center;">
+  <button>
+    <a class="btn-group" onclick = DisplayPicture()>Random 4chan Header Image</a>
+  </button>
+</div>
+
+
+
+</div>
+</body>
