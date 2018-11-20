@@ -1,0 +1,10 @@
+<Head>
+<style>
+body{
+background: #B3CAFF;
+background: -moz-linear-gradient(top, #B3CAFF 0%, #EEF2FF 51%, #EEF2FF 100%);
+background: -webkit-linear-gradient(top, #B3CAFF 0%, #EEF2FF 51%, #EEF2FF 100%);
+background: linear-gradient(to bottom, #B3CAFF 0%, #EEF2FF 51%, #EEF2FF 100%);
+}
+/style>
+</Head>
