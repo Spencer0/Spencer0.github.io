@@ -13,6 +13,24 @@
 	    /* W3C */
 	}
 
+.topnav {
+    overflow: hidden;
+    background-color: #d1d5ee;
+    text-align: center;
+    bottom: 0;
+}
+
+/* Style the search box inside the navigation bar */
+.topnav input[type=text] {
+    float: top;
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 17px;
+}
+
+}
 
 button 
 {
