@@ -20,7 +20,7 @@
 
 		//Brick Properties
 		var brickRowCount = 3;
-		var brickColumnCount = (canvas.width /85) - 1;
+		var brickColumnCount = 10;
 		var brickWidth = 75;
 		var brickHeight = 20;
 		var brickPadding = 10;
@@ -46,6 +46,7 @@
 		var y = canvas.height-30;
 		var dx = 8;
 		var dy = -8;
+		var dr = .1;
 		var ballRadius = 10;
 		
 		//User input variables
@@ -77,7 +78,7 @@
 		                    dy = -dy;
 		                    b.status = 0;
 		                    score++;
-		                   if(score == brickRowCount*brickColumnCount) {
+		                   if(score >= brickRowCount*brickColumnCount) {
                         		alert("Clear!");
                         		document.location.reload();
                     		}
@@ -138,11 +139,12 @@
 	    	drawPaddle();
 
 
-	    	ballRadius += .1;
+	    	ballRadius += dr;
 	    	if(ballRadius > 40)
 	    	{
+	        dr += .01;
 	    	ballRadius = 5;
-	    	dy = -dy;
+			dy = -dy;
 	    	dx = -dx;
 	    	}
 	    	x += dx;
