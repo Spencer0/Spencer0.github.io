@@ -1,6 +1,14 @@
 
 
-
+	canvas 
+	{ 
+		padding-left: 0;
+    	padding-right: 0;
+    	margin-left: auto;
+    	margin-right: auto;
+    	display: block;
+    	width: 800px;
+	}
 	body
 	{
 	    background: -webkit-gradient(linear, left top, right top, color-stop(0%, transparent), color-stop(50%,#fff), color-stop(100%,transparent)); 
