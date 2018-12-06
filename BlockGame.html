@@ -8,11 +8,13 @@
 
 </script>
 <body >
-	<canvas id="myCanvas" width="900" height="600"></canvas>
+	<canvas id="myCanvas" width="1200" height="600"></canvas>
 
 	<script>
 
+		//This line sets our canvas to a working variable
 		var canvas = document.getElementById("myCanvas");
+		//Changes the context of the canvas to a 2d game
 		var ctx = canvas.getContext("2d");
 		//Hold user properties
 		var score = 0;
@@ -20,12 +22,12 @@
 
 		//Brick Properties
 		var brickRowCount = 3;
-		var brickColumnCount = 10;
+		var brickColumnCount = 13;
 		var brickWidth = 75;
 		var brickHeight = 20;
 		var brickPadding = 10;
 		var brickOffsetTop = 30;
-		var brickOffsetLeft = 30;	
+		var brickOffsetLeft = 50;	
 
 		//Create 2d bricks array to draw all bricks
 		var bricks = [];
@@ -40,6 +42,7 @@
 		var paddleHeight = 10;
 		var paddleWidth = 75;
 		var paddleX = (canvas.width-paddleWidth)/2;
+		var paddleY = canvas.height-paddleHeight;
 
 		//Properties of the circle
 		var x = canvas.width/2;
@@ -52,6 +55,9 @@
 		//User input variables
 		var rightPressed = false;
 		var leftPressed = false;
+		var downPressed = false;
+		var upPressed = false; 
+
 		//Keyboard listeners 
 		document.addEventListener("keydown", keyDownHandler, false);
 		document.addEventListener("keyup", keyUpHandler, false);
@@ -65,8 +71,12 @@
 		}
 		function mouseMoveHandler(e) {
 		    var relativeX = e.clientX - canvas.offsetLeft;
+		    var relativeY = e.clientY - canvas.offsetTop;
 		    if(relativeX > 0 && relativeX < canvas.width) {
 		        paddleX = relativeX - paddleWidth/2;
+		    }
+		    if(relativeY > 0 && relativeY < canvas.height) {
+		        paddleY = relativeY - paddleHeight/2;
 		    }
 		}
 		function collisionDetection() {
@@ -85,6 +95,10 @@
 		                }
 		            }
 		        }
+		    }
+
+		    if(paddleX < x && x < paddleX+paddleWidth && paddleY-5< y && y < paddleY+paddleHeight-5){
+		    	dy = -dy;
 		    }
 		}
 
@@ -122,7 +136,7 @@
 		}
 		function drawPaddle() {
 		    ctx.beginPath();
-		    ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
+		    ctx.rect(paddleX, paddleY, paddleWidth, paddleHeight);
 		    ctx.fillStyle = "#0095DD";
 		    ctx.fill();
 		    ctx.closePath();
@@ -139,7 +153,7 @@
 	    	drawPaddle();
 
 
-	    	ballRadius += dr;
+	    	//ballRadius += dr;
 	    	if(ballRadius > 40)
 	    	{
 	        dr += .01;
@@ -152,23 +166,22 @@
 	    	if(y + dy < ballRadius) {
 			    dy = -dy;
 			} 
-			else if(y + dy > canvas.height-ballRadius) {
-				if(x > paddleX && x < paddleX + paddleWidth) {
-        			dy = -dy;
-    			}
-    			else{
+			else if(y + dy > canvas.height) {
 			    	lives--;
+
 					if(!lives) {
 					    alert("GAME OVER");
 					    document.location.reload();
 					}
 					else {
 					    x = canvas.width/2;
-					    y = canvas.height-30;
+					    y = canvas.height-100;
+					    dy =-8;
 					    paddleX = (canvas.width-paddleWidth)/2;
+					    paddleY = canvas.height;
 					}
-			    }
 			}
+			
 			if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
     			dx = -dx;
 			}
@@ -178,6 +191,12 @@
 			else if(leftPressed && paddleX > 0) {
     			paddleX -= 14;
 			}
+			else if(downPressed && paddleY < canvas.height){
+				paddleY += 7;
+			}
+			else if(upPressed && paddleY > 10){
+				paddleY -= 7;
+			}
 			requestAnimationFrame(draw);
 		}
 
@@ -185,20 +204,34 @@
     		if(e.keyCode == 39) {
         		rightPressed = true;
     		}
-    		else if(e.keyCode == 37) {
+    		if(e.keyCode == 40)
+    		{
+    			downPressed = true;
+    		}
+    		if(e.keyCode == 37) {
         		leftPressed = true;
     		}
+    		if(e.keyCode == 38) {
+		        upPressed = true;
+		    }
 		}
 
 		function keyUpHandler(e) {
+			if(e.keyCode == 40)
+    		{
+    			downPressed = false;
+    		}
 		    if(e.keyCode == 39) {
 		        rightPressed = false;
 		    }
-		    else if(e.keyCode == 37) {
+		    if(e.keyCode == 37) {
 		        leftPressed = false;
 		    }
+		    if(e.keyCode == 38) {
+		        upPressed = false;
+		    }
 		}
-		draw();
+		requestAnimationFrame(draw());
 	</script>
 
 </body>
